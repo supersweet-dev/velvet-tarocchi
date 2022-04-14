@@ -2,7 +2,7 @@
   "name": "moonlight-tarot",
   "description": "a small game for testing npm",
   "author": "supersweet",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
