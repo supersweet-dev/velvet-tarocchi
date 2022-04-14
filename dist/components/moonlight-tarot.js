@@ -61,7 +61,7 @@ function _interopRequireWildcard(obj, nodeInterop) {
 
 const TarotBoard = () => {
   //Cards DB
-  var tablecloth = 'https://imgur.com/0q2fDLx';
+  var tablecloth = 'https://imgur.com/0q2fDLx.png';
   var cardback = {
     name: 'Card',
     image: 'https://i.imgur.com/v0CtagW.png',
@@ -267,7 +267,9 @@ const TarotBoard = () => {
         "Keep your dreams alive. Don't feel bad about having great expectations, your strong desire will keep you going.",
     },
   ];
-  const [flipped, flip] = (0, _react.useState)(false);
+  const [flippedPast, flipPast] = (0, _react.useState)(false);
+  const [flippedPresent, flipPresent] = (0, _react.useState)(false);
+  const [flippedAdvice, flipAdvice] = (0, _react.useState)(false);
   return /*#__PURE__*/ _react.default.createElement(
     _Box.default,
     null,
@@ -275,12 +277,36 @@ const TarotBoard = () => {
       _material.Card,
       {
         onClick: () => {
-          flip(!flipped);
+          flipPast(!flippedPast);
         },
       },
       /*#__PURE__*/ _react.default.createElement(_material.CardMedia, {
         component: 'img',
-        image: flipped ? cardback.image : cards[0].image,
+        image: flippedPast ? cards[0].image : cardback.image,
+      })
+    ),
+    /*#__PURE__*/ _react.default.createElement(
+      _material.Card,
+      {
+        onClick: () => {
+          flipPresent(!flippedPresent);
+        },
+      },
+      /*#__PURE__*/ _react.default.createElement(_material.CardMedia, {
+        component: 'img',
+        image: flippedPresent ? cards[1].image : cardback.image,
+      })
+    ),
+    /*#__PURE__*/ _react.default.createElement(
+      _material.Card,
+      {
+        onClick: () => {
+          flipAdvice(!flippedAdvice);
+        },
+      },
+      /*#__PURE__*/ _react.default.createElement(_material.CardMedia, {
+        component: 'img',
+        image: flippedAdvice ? cards[2].image : cardback.image,
       })
     )
   );

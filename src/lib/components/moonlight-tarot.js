@@ -4,7 +4,7 @@ import { Card, CardMedia } from '@mui/material';
 
 const TarotBoard = () => {
   //Cards DB
-  var tablecloth = 'https://imgur.com/0q2fDLx';
+  var tablecloth = 'https://imgur.com/0q2fDLx.png';
   var cardback = {
     name: 'Card',
     image: 'https://i.imgur.com/v0CtagW.png',
@@ -211,18 +211,40 @@ const TarotBoard = () => {
     },
   ];
 
-  const [flipped, flip] = useState(false);
+  const [flippedPast, flipPast] = useState(false);
+  const [flippedPresent, flipPresent] = useState(false);
+  const [flippedAdvice, flipAdvice] = useState(false);
 
   return (
     <Box>
       <Card
         onClick={() => {
-          flip(!flipped);
+          flipPast(!flippedPast);
         }}
       >
         <CardMedia
           component={'img'}
-          image={flipped ? cardback.image : cards[0].image}
+          image={flippedPast ? cards[0].image : cardback.image}
+        />
+      </Card>
+      <Card
+        onClick={() => {
+          flipPresent(!flippedPresent);
+        }}
+      >
+        <CardMedia
+          component={'img'}
+          image={flippedPresent ? cards[1].image : cardback.image}
+        />
+      </Card>
+      <Card
+        onClick={() => {
+          flipAdvice(!flippedAdvice);
+        }}
+      >
+        <CardMedia
+          component={'img'}
+          image={flippedAdvice ? cards[2].image : cardback.image}
         />
       </Card>
     </Box>
