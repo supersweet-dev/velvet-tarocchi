@@ -4,6 +4,7 @@ import { Card, CardMedia } from '@mui/material';
 import { ReactDOM } from 'react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //Cards DB
+var tablecloth = 'https://imgur.com/0q2fDLx';
 var cardback = 'https://imgur.com/v0CtagW';
 var cards = [
   {
