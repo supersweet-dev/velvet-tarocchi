@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Card, CardMedia } from '@mui/material';
-import { ReactDOM } from 'react';
+import ReactDOM from 'react-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //Cards DB
 var tablecloth = 'https://imgur.com/0q2fDLx';
