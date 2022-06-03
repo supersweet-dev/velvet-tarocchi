@@ -1,10 +1,10 @@
-export const tablecloth = 'https://imgur.com/0q2fDLx.png';
+export const tablecloth = 'https://i.imgur.com/Ki1Lu8C.png';
 export const cardback = {
   name: 'Card',
   image: 'https://i.imgur.com/v0CtagW.png',
-  past: 'Fate and circumstance have brought you here.',
-  present: 'You want to know why.',
-  advice: 'I can guide you.',
+  past: 'This card will reveal the conditions that brought you here.',
+  present: 'This card will shed light on your current situation.',
+  advice: 'This card will guide you towards your destiny.',
 };
 export const cards = [
   {
