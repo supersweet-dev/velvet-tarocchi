@@ -1,2 +1,2 @@
-import TarotBoard from './components/moonlight-tarot';
+import TarotBoard from './components/tarot-board';
 export { TarotBoard };

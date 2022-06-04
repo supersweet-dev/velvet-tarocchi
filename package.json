@@ -1,8 +1,8 @@
 {
-  "name": "moonlight-tarot",
-  "description": "a small game for testing npm",
+  "name": "velvet-tarocchi",
+  "description": "A simple 3 card spread tarot reading. Uses the user's birthday to 'seed' card draws.",
   "author": "supersweet",
-  "version": "1.3.1",
+  "version": "1.0.0",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/supersweet-dev/moonlight-tarot-react"
+    "url": "git+https://github.com/supersweet-dev/velvet-tarocchi"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
