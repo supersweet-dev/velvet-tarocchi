@@ -45,7 +45,7 @@ const TarotBoard = () => {
         <Grid container item spacing={1} p={2}>
           <Grid item xs={12}>
             <Typography gutterBottom variant="h5">
-              Moonlight Tarot
+              Velvet Tarocchi
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>

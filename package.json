@@ -2,7 +2,7 @@
   "name": "velvet-tarocchi",
   "description": "A simple 3 card spread tarot reading. Uses the user's birthday to 'seed' card draws.",
   "author": "supersweet",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
