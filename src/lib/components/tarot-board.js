@@ -1,173 +1,108 @@
 import React, { useState } from 'react';
-import MomentUtils from '@date-io/moment';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Paper,
-  Typography,
-} from '@mui/material';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import './tarot.css';
 import { cards, cardback, tablecloth } from './cards';
 
 const TarotBoard = () => {
-  const [selectedDate, handleDateChange] = useState(new Date());
-  const [spread, updateSpread] = useState([
-    { flipped: false, card: cardback },
-    { flipped: false, card: cardback },
-    { flipped: false, card: cardback },
-  ]);
-  const reset = () => {
-    const seed = new Date(selectedDate).getTime();
-    const deck = [...cards];
-    const draw = [];
-    while (draw.length < 3) {
-      const rand = Math.random() + parseFloat('.' + seed);
-      const index = Math.floor((rand - Math.floor(rand)) * deck.length);
-      draw.push(deck[index]);
-      deck.splice(index, 1);
-    }
-    updateSpread([
-      { flipped: false, card: draw[0] },
-      { flipped: false, card: draw[1] },
-      { flipped: false, card: draw[2] },
-    ]);
-  };
-  return (
-    <Paper
-      style={{ backgroundImage: `url(${tablecloth})` }}
-      elevation={3}
-      p={2}
-    >
-      <Grid container spacing={2} p={2}>
-        <Grid container item spacing={1} p={2}>
-          <Grid item xs={12}>
-            <Typography gutterBottom variant="h5">
-              Velvet Tarocchi
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="body2" color="text.secondary">
-              Enter your birthday to begin
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <MuiPickersUtilsProvider utils={MomentUtils}>
-              <DatePicker
-                disableFuture
-                openTo="year"
-                format="MM/DD/yyyy"
-                label="Date of birth"
-                views={['year', 'month', 'date']}
-                value={selectedDate}
-                onChange={handleDateChange}
-              />
-            </MuiPickersUtilsProvider>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Button onClick={reset} variant="contained" color="secondary">
-              DRAW
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card
-            onClick={
-              !spread[0].flipped
-                ? () => {
-                    const newSpread = [...spread];
-                    newSpread[0].flipped = true;
-                    updateSpread(newSpread);
-                  }
-                : () => {}
-            }
-          >
-            <CardMedia
-              component={'img'}
-              image={spread[0].flipped ? spread[0].card.image : cardback.image}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {spread[0].flipped
-                  ? spread[0].card.name === 'Card'
-                    ? 'Reveal Past'
-                    : spread[0].card.name
-                  : 'Reveal Past'}
-              </Typography>
+	const [selectedDate, handleDateChange] = useState('');
+	const [enabled, setEnabled] = useState(false);
+	const [spread, updateSpread] = useState([
+		{ flipped: false, card: cardback },
+		{ flipped: false, card: cardback },
+		{ flipped: false, card: cardback },
+	]);
 
-              <Typography variant="body2" color="text.secondary">
-                {spread[0].flipped ? spread[0].card.past : cardback.past}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card
-            onClick={
-              !spread[1].flipped
-                ? () => {
-                    const newSpread = [...spread];
-                    newSpread[1].flipped = true;
-                    updateSpread(newSpread);
-                  }
-                : () => {}
-            }
-          >
-            <CardMedia
-              component={'img'}
-              image={spread[1].flipped ? spread[1].card.image : cardback.image}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {spread[1].flipped
-                  ? spread[1].card.name === 'Card'
-                    ? 'Reveal Present'
-                    : spread[1].card.name
-                  : 'Reveal Present'}
-              </Typography>
+	const reset = () => {
+		const seed = new Date(selectedDate).getTime();
+		const deck = [...cards];
+		const draw = [];
+		while (draw.length < 3) {
+			const rand = Math.random() + parseFloat('.' + seed);
+			const index = Math.floor((rand - Math.floor(rand)) * deck.length);
+			draw.push(deck[index]);
+			deck.splice(index, 1);
+		}
+		updateSpread(draw.map((card) => ({ flipped: false, card })));
+		setEnabled(true);
+	};
 
-              <Typography variant="body2" color="text.secondary">
-                {spread[1].flipped ? spread[1].card.present : cardback.present}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card
-            onClick={
-              !spread[2].flipped
-                ? () => {
-                    const newSpread = [...spread];
-                    newSpread[2].flipped = true;
-                    updateSpread(newSpread);
-                  }
-                : () => {}
-            }
-          >
-            <CardMedia
-              component={'img'}
-              image={spread[2].flipped ? spread[2].card.image : cardback.image}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {spread[2].flipped
-                  ? spread[2].card.name === 'Card'
-                    ? 'Reveal Advice'
-                    : spread[2].card.name
-                  : 'Reveal Advice'}
-              </Typography>
+	const flipCard = (index) => {
+		if (!spread[index].flipped) {
+			const newSpread = [...spread];
+			newSpread[index].flipped = true;
+			updateSpread(newSpread);
+		}
+	};
 
-              <Typography variant="body2" color="text.secondary">
-                {spread[2].flipped ? spread[2].card.advice : cardback.advice}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
+	return (
+		<div className="tarot-board">
+			<div className="tarot-header">
+				<h1 className="tarot-title">Velvet Tarocchi</h1>
+				<p className="tarot-subtitle">
+					enter your birthday. click draw. click each card to reveal.
+				</p>
+				<div className="tarot-controls">
+					<input
+						type="date"
+						max={new Date().toISOString().split('T')[0]}
+						value={selectedDate}
+						onChange={(e) => handleDateChange(e.target.value)}
+					/>
+					<button
+						className="tarot-neo-button"
+						onClick={reset}
+						disabled={!selectedDate}
+					>
+						DRAW
+					</button>
+				</div>
+			</div>
+
+			<section className="tarot-card-grid">
+				{['Past', 'Present', 'Advice'].map((label, i) => (
+					<div
+						className={`tarot-card ${enabled ? '' : 'disabled'}`}
+						onClick={() => flipCard(i)}
+						key={label}
+					>
+						<div className="tarot-card-info">
+							<h2>
+								{spread[i].flipped
+									? spread[i].card.name === 'Card'
+										? `Reveal ${label}`
+										: spread[i].card.name
+									: `Reveal ${label}`}
+							</h2>
+						</div>
+						<div className="tarot-card-img-wrapper">
+							<img
+								src={
+									spread[i].flipped
+										? spread[i].card.image
+										: cardback.image
+								}
+								alt={label}
+							/>
+						</div>
+						<div className="tarot-card-info">
+							<p className="tarot-phantom-description">
+								You might not even realize it, but you're very
+								likely hooked on something that's holding you
+								back. It could be a person or a bad habit but
+								this card is a reminder to look after yourself.
+								There is a terrible connection in your life that
+								is keeping you from being your full self.
+							</p>
+							<p className="tarot-card-label">
+								{spread[i].flipped
+									? spread[i].card[label.toLowerCase()]
+									: cardback[label.toLowerCase()]}
+							</p>
+						</div>
+					</div>
+				))}
+			</section>
+		</div>
+	);
 };
 
 export default TarotBoard;
