@@ -1,10 +1,10 @@
-:root {
-	--tarot-background: var(--background, #ebebeb);
-	--tarot-accent: var(--accent, #000);
-	--tarot-primary: var(--primary, #ff6347);
-	--tarot-secondary: var(--secondary, #ffa500);
-	--tarot-text: var(--text, #333);
-	--tarot-card-bg: var(--background, #ebebeb);
+export const style = `:root {
+	--tarot-background: #507096;
+	--tarot-accent: #ffcd45;
+	--tarot-primary: #60abbb;
+	--tarot-secondary: #2f304c;
+	--tarot-text: #ebebeb;
+	--tarot-card-bg: var(--tarot-background);
 	--tablecloth: url('https://i.imgur.com/Ki1Lu8C.png');
 }
 
@@ -95,7 +95,7 @@
 	flex-direction: column;
 	align-items: center;
 	overflow: hidden;
-	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smoothen the hover */
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .tarot-card:hover {
@@ -117,17 +117,20 @@
 	margin-top: 0.5rem;
 	font-size: 1rem;
 }
+
 .tarot-card-label {
 	position: absolute;
 	top: 1rem;
 	left: 0.5rem;
 	right: 0.5rem;
 }
+
 @media (max-width: 768px) {
 	.tarot-card-grid {
 		grid-template-columns: 1fr;
 	}
 }
+
 .tarot-card-img-wrapper {
 	position: relative;
 	width: 60%;
@@ -145,8 +148,9 @@
 
 	object-fit: contain;
 }
+
 .tarot-phantom-description {
 	opacity: 0;
 	pointer-events: none;
 	user-select: none;
-}
+}`;
